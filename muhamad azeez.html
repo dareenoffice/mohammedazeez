@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="ckb">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MA Automotive Trading · سێ زمان</title>
+  <!-- Font Awesome 6 (free) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
+    }
+
+    body {
+      background: #e2e3e5;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1rem;
+    }
+
+    .brand-card {
+      max-width: 1100px;
+      width: 100%;
+      background: #ffffff;
+      border-radius: 2.8rem;
+      box-shadow: 0 24px 48px -14px rgba(0,0,0,0.25);
+      padding: 2.2rem 2.5rem 2.5rem 2.5rem;
+      transition: 0.2s;
+    }
+
+    /* header */
+    .header-arabic {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      border-bottom: 1px solid #e2e3e5;
+      padding-bottom: 0.7rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .name-main {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: #e2e3e5;
+      line-height: 1.2;
+    }
+
+    .name-main small {
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: #e2e3e5;
+      margin-left: 8px;
+    }
+
+    .badge-group {
+      display: flex;
+      gap: 0.4rem 0.8rem;
+    }
+
+    .badge {
+      background: #e2e3e5;
+      padding: 0.2rem 1.2rem;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 0.8rem;
+      color: #e2e3e5;
+      border: 1px solid #e2e3e5;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      white-space: nowrap;
+    }
+
+    .badge i { color: #e2e3e5; }
+
+    .tagline {
+      font-size: 1rem;
+ align-items: center;
+      font-weight: 600;
+      color: #e2e3e5;
+      background: #e2e3e5;
+      padding: 0.5rem 1.5rem;
+      border-radius: 60px;
+      display: inline-block;
+      margin: 0.6rem 0 1.2rem 0;
+      border-left: 4px solid #e2e3e5;
+    }
+    .tagline i { margin-right: 8px; color: #e9bf77; align-items: center; }
+
+    /* three lang cards */
+    .lang-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 1.8rem;
+    }
+
+    .lang-card {
+      background: #f8fcff;
+      border-radius: 24px;
+      padding: 1rem 1.2rem;
+      border: 1px solid #e2ebf6;
+      box-shadow: inset 0 1px 4px rgba(0,0,0,0.02);
+      transition: 0.1s;
+    }
+
+    .lang-card .lang-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: #e9bf77;
+      border-bottom: 1px dashed #e4e5e7;
+      padding-bottom: 0.4rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .lang-card .lang-header i {
+      font-size: 1.2rem;
+      color: #e9bf77;
+    }
+
+    .lang-card p {
+      font-size: 0.9rem;
+      line-height: 1.6;
+      color: #0a1119;
+    }
+
+    /* stats */
+    .stats-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 0.3rem 0.8rem;
+      background: #f0f6fe;
+      padding: 0.6rem 1.2rem;
+      border-radius: 60px;
+      margin-bottom: 1.8rem;
+    }
+    .stat-item {
+      font-weight: 700;
+      font-size: 0.85rem;
+      color: #0b2b4a;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .stat-item i { color: #e9bf77; }
+    .stat-item span {
+      background: white;
+      padding: 0.05rem 0.7rem;
+      border-radius: 40px;
+      font-size: 0.7rem;
+      border: 1px solid #e3e4e6;
+      margin-left: 3px;
+    }
+
+    /* supply chain */
+    .supply-chain {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.6rem;
+      background: #f4f9ff;
+      padding: 0.7rem 0.8rem;
+      border-radius: 40px;
+      margin-bottom: 1.8rem;
+      border: 1px solid #e3e4e6;
+    }
+    .supply-item {
+      text-align: center;
+      font-weight: 600;
+      font-size: 0.85rem;
+      color: #113153;
+      background: white;
+      padding: 0.3rem 0.2rem;
+      border-radius: 40px;
+      border: 1px solid #e9bf77;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+    }
+    .supply-item i { color: #e9bf77; }
+
+    /* product double */
+    .product-double {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 1.8rem;
+    }
+    .product-box {
+      background: #fafdff;
+      border-radius: 30px;
+      padding: 0.7rem 1.2rem;
+      border: 1px solid #e9bf77;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .product-box-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .product-box-left i {
+      font-size: 1.4rem;
+      color: #e9bf77;
+      background: #e9f0fa;
+      padding: 6px;
+      border-radius: 40px;
+      width: 2.5rem;
+      text-align: center;
+    }
+    .product-box-left span {
+      font-weight: 600;
+      color: #142b42;
+      font-size: 0.95rem;
+    }
+    .product-badge {
+      background: #e9bf77;
+      padding: 0.1rem 1rem;
+      border-radius: 40px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: #00337a;
+    }
+
+    /* location + chat row */
+    .action-tags {
+      display: flex;
+ align-items: center;
+      gap: 0.4rem 0.8rem;
+      margin-bottom: 0.6rem;
+      align-items: center;
+    }
+    .action-tag {
+      background: #e9bf77;
+      padding: 0.15rem 1.2rem;
+      border-radius: 40px;
+      font-weight: 500;
+      font-size: 0.8rem;
+      color: #1d3b5a;
+      border: 1px solid #d3deee;
+    }
+    .action-tag i { margin-right: 4px; }
+    .whatsapp-tag { background: #e2f3e6; color: #1f5a3a; }
+
+    /* image placeholders */
+    .img-placeholder {
+      background: #e2e3e5;
+      border: 2px dashed #e9bf77;
+      border-radius: 20px;
+      min-height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #4f6f92;
+      font-size: 0.75rem;
+      padding: 0.5rem;
+      margin: 0.3rem 0;
+    }
+    .img-placeholder i { margin-right: 6px; color: #3b6a9e; }
+    .two-img-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin: 0.6rem 0 0.8rem 0;
+    }
+
+    /* quick grid */
+    .quick-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 0.5rem;
+      background: #f4f9ff;
+      padding: 0.6rem 0.8rem;
+      border-radius: 60px;
+      margin: 0.6rem 0 1rem 0;
+      border: 1px solid #e9bf77;
+    }
+    .quick-item {
+      text-align: center;
+      font-weight: 600;
+      font-size: 0.7rem;
+      color: #e9bf77;
+      background: white;
+      padding: 0.2rem 0.1rem;
+      border-radius: 40px;
+      border: 1px solid #ccdae9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 3px;
+    }
+    .quick-item i { color: #e9bf77; font-size: 0.75rem; }
+
+    /* footer */
+    .footer-address {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #0b1f33;
+      padding: 1rem 1.8rem;
+      border-radius: 60px;
+      color: white;
+      margin-top: 1rem;
+    }
+    .address-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 500;
+      font-size: 0.9rem;
+      font-color: #ffffff;
+
+    }
+    .address-left i { color: #e9bf77; font-size: 1.1rem; }
+    .address-phone {
+      display: flex;
+      gap: 1rem;
+    }
+    .address-phone a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      background: #1f3b5a;
+      padding: 0.1rem 1.2rem;
+      border-radius: 40px;
+      font-size: 0.85rem;
+      border: 1px solid #e9bf77;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .address-phone a i { color: #9bc2ff; }
+    .agent-tag {
+      font-weight: 700;
+      background: #1f3b5a;
+      padding: 0.1rem 1.6rem;
+      border-radius: 40px;
+      border: 1px solid #4f7cb3;
+      font-size: 0.85rem;
+    }
+
+    @media (max-width: 800px) {
+      .lang-grid { grid-template-columns: 1fr; }
+      .supply-chain { grid-template-columns: 1fr 1fr; }
+      .quick-grid { grid-template-columns: 1fr 1fr 1fr; }
+      .product-double { grid-template-columns: 1fr; }
+      .footer-address { flex-direction: column; align-items: flex-start; gap: 0.8rem; }
+      .brand-card { padding: 1.5rem; }
+    }
+    @media (max-width: 500px) {
+      .supply-chain { grid-template-columns: 1fr 1fr; }
+      .quick-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+<div class="brand-card">
+
+
+  <!-- final image placeholder -->
+  <div class="img-placeholder" style="min-height: 40px; margin-top: 0.6rem;"><img src="C:\Users\msi\OneDrive\Desktop\mohammed azeez.png" alt="Banner" width="1000" height="500" alt="Banner"></div>
+
+
+  <!-- three languages -->
+  <div class="lang-grid">
+ <!-- English -->
+    <div class="lang-card">
+      <div class="lang-header"><i></i> English</div>
+      <p><strong>Muhammad Azeez</strong> is specializing in the import and wholesale distribution of PPF (Paint Protection Film), Vinyl Wrap, Window Film, Reflective Sheeting, and professional installation tools and materials. Our headquarters are located in Erbil, Iraq. We import our products directly from leading manufacturers in China and trusted companies in the United Arab Emirates (UAE), then distribute them wholesale to markets and dealers across all provinces of Iraq.</p>
+    </div>
+    <!-- عەرەبی -->
+    <div class="lang-card">
+      <div class="lang-header"><i></i> العربية</div>
+      <p><strong>محمد عزيز</strong> متخصصة في استيراد وتوزيع منتجات PPF، وأفلام تظليل السيارات (Window Film)، والشرائح العاكسة (Reflective Sheeting)، بالإضافة إلى الأدوات والمواد اللازمة للتركيب. يقع المقر الرئيسي في أربيل – العراق. نقوم باستيراد منتجاتنا مباشرةً من المصانع في الصين ومن الشركات الموثوقة في دولة الإمارات العربية المتحدة، ثم نوزعها بالجملة إلى الأسواق والوكلاء والتجار في جميع محافظات العراق.</p>
+    </div>
+   <!-- کوردی -->
+    <div class="lang-card">
+      <div class="lang-header"><i></i> کوردی</div>
+      <p><strong>محمد عەزیز</strong> تایبەتمەندە بە هاوردە و دابەشکردنی کۆمەڵی کاڵاکانی PPF، Window Film، Reflective Sheeting و ئامێر و کەرەستەی پێویست بۆ دامەزراندن. بنکەی سەرەکی لە هەولێر – عێراقە. کاڵاکانمان بە ڕاستەوخۆ لە کارگەکانی چین و کۆمپانیا باوەڕپێکراوەکانی ئیماراتی یەکگرتوو هاوردە دەکرێن، پاشان بە شێوەی کۆمەڵفرۆشی بۆ بازاڕ و فرۆشیارانی هەموو پارێزگاکانی عێراق دابەش دەکرێن.</p>
+    </div>
+    
+  </div>
+
+
+
+  <!-- supply chain -->
+  <div class="supply-chain">
+    <div class="supply-item"><i class="fas fa-industry"></i> CHINA MANUFACTURERS</div>
+    <div class="supply-item"><i class="fas fa-flag"></i> UAE TRUSTED COMPANIES</div>
+    <div class="supply-item"><i class="fas fa-building"></i> ERBIL <span style="font-weight:400;">OUR HEADQUARTERS</span></div>
+    <div class="supply-item"><i class="fas fa-truck"></i> ALL IRAQ <span style="font-weight:400;">DISTRIBUTION</span></div>
+  </div>
+
+  <!-- products -->
+  <div class="product-double">
+    <div class="product-box">
+      <div class="product-box-left"><i class="fas fa-car"></i><span>AUTOMOTIVE PROTECTION</span></div>
+      <span class="product-badge">PPF · WINDOW</span>
+    </div>
+    <div class="product-box">
+      <div class="product-box-left"><i class="fas fa-cube"></i><span>SIGNAGE MATERIALS & TOOLS</span></div>
+      <span class="product-badge"><i class="fas fa-tools"></i> PRO</span>
+    </div>
+  </div>
+
+  <!-- action tags -->
+  <div class="action-tags">
+
+    <span class="action-tag"><i class="fas fa-lightbulb"></i> REFLECTIVE SHEETING</span>
+    <span class="action-tag"><i class="fas fa-tape"></i> DOUBLE FACE TAPE</span>
+    <span class="action-tag"><i class="fas fa-wrench"></i> TOOLS INSTALLATION</span>
+    <span class="action-tag"><i class="fas fa-certificate"></i> ODM QUALITY</span>
+    <span class="action-tag"><i class="fas fa-user-check"></i> AUTHORIZED AGENT</span>
+    <span class="action-tag"><i class="fas fa-award"></i> TRUSTED & CERTIFIED</span>
+  </div>
+
+  <!-- image placeholders (2) -->
+  <div class="two-img-row">
+    <div class="img-placeholder"><i class="fas fa-image"></i> [ وێنە / صورة / image ]</div>
+    <div class="img-placeholder"><i class="fas fa-image"></i> [ وێنە / صورة / image ]</div>
+
+  </div>
+
+  <!-- quick grid -->
+  <div class="quick-grid">
+
+
+  </div>
+
+  <!-- extra image placeholder -->
+  <div class="img-placeholder" style="min-height: 44px; margin: 0.4rem 0 0.8rem 0;"><i class="fas fa-image"></i> [ وێنە / صورة / image ]</div>
+
+  <!-- footer -->
+  <div class="footer-address">
+    <div class="address-phone">
+     <a href="https://maps.app.goo.gl/NTgjrjd73ta8arfG7"> <i class="fas fa-location-dot"></i>
+      <span>Erbil, Iraq, 60m Street, Near PAR Hospital  <br> </a><span style="font-weight:300; font-size:0.75rem;">
+    </div>
+    <div class="address-phone">
+      <a href="https://api.whatsapp.com/send?phone=9647501461920"><i class="fas fa-phone-alt"></i> +964 750 146 1920</a>
+      <a href="https://api.whatsapp.com/send?phone=9647504169525"><i class="fas fa-phone-alt"></i> +964 750 416 9525</a>
+    </div>
+
+  </div>
+
+  <!-- bottom agent -->
+  <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 0.8rem; ">
+    <span style="font-weight: 700; color: #091018; font-size: 1.1rem;">MA Automotive Trading</span>
+    <span style="background: #dce6f5; padding: 0.1rem 1.5rem; border-radius: 40px; font-weight: 600; color: #00337a; font-size:0.85rem;">AUTHORIZED AGENT IN IRAQ</span>
+  </div>
+
+
+
+</div>
+</body>
+</html>
